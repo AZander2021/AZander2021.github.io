@@ -23,6 +23,14 @@ var readyCM = function() {
   }).then(function(server) {
     communityMirrorServer = server;
     return server.getPrimaryService(communityMirrorServiceUUID);
+    
+  }).then(function(service) {
+    return Promise.all(Object.values(characteristics).map((uuid)=>service.getCharacteristic(uuid)));
+
+  }).then(function(characteristicObjs) {
+    Object.keys(characteristics).forEach((name, i)=> {
+      cachedCharacteristics[name] = characteristicObjs[i];
+    });
 
   }).catch(function(err) {
     alert('communitymirror (bluetooth) error');
