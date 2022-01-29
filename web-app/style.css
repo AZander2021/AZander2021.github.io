@@ -5,6 +5,6 @@ html, body {
   padding: 0;
 }
 
-#start, #login, #username-text, #password-text #register {
+#start, #login {
   font-size: 1.5em;
 }
