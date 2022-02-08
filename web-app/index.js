@@ -6,6 +6,10 @@ var characteristics = {
   password: '13333333-3333-3333-3333-333333330003' 
 };
 
+var toppingsEls = document.getElementById('register');
+var username = document.getElementById('username');
+var password = document.getElementById('password');
+
 // store characteristics after retrieval
 var cachedCharacteristics = {};
 
