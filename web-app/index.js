@@ -55,6 +55,36 @@ var readyIDReq = function(toppings) {
   });
 };
 
+var readyUsername = function(username) {
+  var usernameCharacteristic = cachedCharacteristics['username'];
+  if(usernameCharacteristic == null) throw new Error('cant find usernamecharacterisitic!');
+
+  return usernameCharacteristic.writeValue(username);
+};
+
+var readyPassword = function(password) {
+  var usernameCharacteristic = cachedCharacteristics['password'];
+  if(usernameCharacteristic == null) throw new Error('cant find passwordcharacterisitic');
+
+  return usernameCharacteristic.writeValue(password);
+};
+
+//get values
+var getIDReq = function() {
+  if (toppingsEls.checked) return 2
+  else return 1
+};
+
+var getUsername = function() {
+  enc = new TextEncoder();
+  return enc.encode("." + username.value);
+};
+
+var getPassword = function() {
+  enc = new TextEncoder();
+  return enc.encode("." + password.value);
+};
+
 // button listeners
 var onStartButtonClick = function(e) {
   if(communityMirrorServer != null && communityMirrorServer.connected) {
@@ -65,3 +95,14 @@ var onStartButtonClick = function(e) {
     alert('Connection successful!');
   });
 };
+
+var onLoginButtonClick = function(e) {
+  if(communityMirrorServer == null || !communityMirrorServer.connected) {
+    alert('Not connected!');
+    return;
+  }
+
+  readyIDReq(getIDReq())
+      .then(() => readyUsername(getUsername()))
+      .then(() => readyPassword(getPassword()))
+});
