@@ -42,6 +42,19 @@ var readyCM = function() {
   });
 };
 
+// characteristic setup
+var readyIDReq = function(toppings) {
+  var iDReq = new Uint8Array(1);
+  iDReq[0] = toppings;
+
+  var idRequestCharacteristic = cachedCharacteristics['idrequest'];
+  if(idRequestCharacteristic == null) throw new Error('idrequestcharacteristic not found');
+  return idRequestCharacteristic.writeValue(iDReq).catch(function(err) {
+    alert('idrequest error');
+    throw err;
+  });
+};
+
 // button listeners
 var onStartButtonClick = function(e) {
   if(communityMirrorServer != null && communityMirrorServer.connected) {
