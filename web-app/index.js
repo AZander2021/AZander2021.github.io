@@ -105,4 +105,4 @@ var onLoginButtonClick = function(e) {
   readyIDReq(getIDReq())
       .then(() => readyUsername(getUsername()))
       .then(() => readyPassword(getPassword()))
-});
+}
