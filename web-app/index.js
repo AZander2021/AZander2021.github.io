@@ -6,7 +6,8 @@ var characteristics = {
   password: '13333333-3333-3333-3333-333333330003' 
 };
 
-var toppingsEls = document.getElementById('register');
+// get credentials and request
+var iDRequest = document.getElementById('register');
 var username = document.getElementById('username');
 var password = document.getElementById('password');
 
@@ -43,9 +44,9 @@ var readyCM = function() {
 };
 
 // characteristic setup
-var readyIDReq = function(toppings) {
+var readyIDReq = function(req) {
   var iDReq = new Uint8Array(1);
-  iDReq[0] = toppings;
+  iDReq[0] = req;
 
   var idRequestCharacteristic = cachedCharacteristics['idrequest'];
   if(idRequestCharacteristic == null) throw new Error('idrequestcharacteristic not found');
@@ -71,7 +72,7 @@ var readyPassword = function(password) {
 
 //get values
 var getIDReq = function() {
-  if (toppingsEls.checked) return 2
+  if (iDRequest.checked) return 2
   else return 1
 };
 
